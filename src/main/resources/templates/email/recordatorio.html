@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recordatorio de préstamo</title>
+</head>
+<body>
+<h1>Recordatorio de préstamo</h1>
+<p>Hola <span th:text="${nombreEstudiante}"></span>,</p>
+<p>Te recordamos que tienes prestado el libro: <strong th:text="${nombreLibro}"></strong></p>
+<p>Días restantes para devolución: <span th:text="${diasRestantes}"></span></p>
+<p>¡Por favor devuélvelo a tiempo!</p>
+</body>
+</html>
