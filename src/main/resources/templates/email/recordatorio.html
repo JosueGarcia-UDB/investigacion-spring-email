@@ -3,12 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Recordatorio de préstamo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        .book-info {
+            margin: 25px 0;
+            padding: 7px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .deadline {
+            background: #fff8e6;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .urgent {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .banner-img {
+            max-width: 100%;
+            width: 500px;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>Recordatorio de préstamo</h1>
-<p>Hola <span th:text="${nombreEstudiante}"></span>,</p>
-<p>Te recordamos que tienes prestado el libro: <strong th:text="${nombreLibro}"></strong></p>
-<p>Días restantes para devolución: <span th:text="${diasRestantes}"></span></p>
-<p>¡Por favor devuélvelo a tiempo!</p>
+<div class="header">
+    <h2>Recordatorio de Préstamo</h2>
+</div>
+
+<p>Estimado/a <strong th:text="${nombreEstudiante}"></strong>,</p>
+
+<div class="book-info">
+    <p>Tiene prestado el libro:</p>
+    <h3 th:text="${nombreLibro}"></h3>
+</div>
+
+<div class="deadline">
+    <p th:if="${diasRestantes <= 3}" class="urgent">
+        ⚠️ Fecha límite: <span th:text="${#temporals.format(fechaFin, 'dd/MM/yyyy')}"></span>
+        (Quedan <span th:text="${diasRestantes}"></span> días)
+    </p>
+    <p th:unless="${diasRestantes <= 3}">
+        📅 Fecha límite de devolución: <strong th:text="${#temporals.format(fechaFin, 'dd/MM/yyyy')}"></strong>
+    </p>
+</div>
+
+<img th:src="|cid:footer-banner|" alt="Fundación Supérate" class="banner-img" />
+
+<div class="footer">
+    <p>Fundación Supérate • Sistema de Biblioteca</p>
+    <p>Tel: 2526-9230 • San Salvador, El Salvador</p>
+</div>
 </body>
 </html>
