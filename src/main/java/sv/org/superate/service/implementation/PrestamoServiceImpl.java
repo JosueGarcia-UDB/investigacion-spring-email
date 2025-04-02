@@ -20,17 +20,21 @@ public class PrestamoServiceImpl implements PrestamoService {
     private final EmailService emailService;
 
     @Override
-    public PrestamoResponse crearPrestamo(PrestamoRequest request) throws MessagingException {
+    public PrestamoResponse crearPrestamo(PrestamoRequest request) {
         Prestamo prestamo = prestamoMapper.toEntity(request);
         Prestamo prestamoGuardado = prestamoRepository.save(prestamo);
 
-        // Enviar email de confirmación
-        emailService.enviarRecordatorioPrestamo(
-                prestamo.getCorreo(),
-                prestamo.getNombreLibro(),
-                prestamo.getNombreEstudiante(),
-                prestamo.getFechaFin()
-        );
+        try {
+            emailService.enviarRecordatorioPrestamo(
+                    prestamo.getCorreo(),
+                    prestamo.getNombreLibro(),
+                    prestamo.getNombreEstudiante(),
+                    prestamo.getFechaFin()
+            );
+        } catch (MessagingException e) {
+            System.err.println("Error en correo inicial: " + e.getMessage());
+        }
+
         return prestamoMapper.toResponse(prestamoGuardado);
     }
 }
