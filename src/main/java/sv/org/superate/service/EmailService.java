@@ -16,11 +16,14 @@ import java.time.temporal.ChronoUnit;
 @Service
 @RequiredArgsConstructor
 public class EmailService {
-    private final JavaMailSender mailSender;
-    private final TemplateEngine templateEngine;
+    private final JavaMailSender mailSender; // Envia el correo
+    private final TemplateEngine templateEngine;  // Genera el HTML dinámico para el correo
 
-    public void enviarRecordatorioPrestamo(String to, String nombreLibro,
-                                           String nombreEstudiante, LocalDate fechaFin) throws MessagingException {
+    public void enviarRecordatorioPrestamo(String to,
+                                           String nombreLibro,
+                                           String nombreEstudiante,
+                                           LocalDate fechaFin) throws MessagingException {
+
         long diasRestantes = ChronoUnit.DAYS.between(LocalDate.now(), fechaFin);
 
         Context context = new Context();
@@ -42,7 +45,7 @@ public class EmailService {
             ClassPathResource banner = new ClassPathResource("static/images/banner-firma.jpg");
             helper.addInline("footer-banner", banner, "image/jpeg");
 
-            mailSender.send(message);
+            mailSender.send(message); // Se envia el mensaje
         } catch (MessagingException e) {
             throw new RuntimeException("Error al enviar el email", e);
         }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PrestamoResponse {
+public class PrestamoResponse { // La informacion que el usuario recibe si todo es correcto
     private Long id;
     private String autor;
     private String nombreLibro;

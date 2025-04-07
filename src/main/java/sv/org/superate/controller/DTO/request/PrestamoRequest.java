@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PrestamoRequest {
+public class PrestamoRequest { // La informacion que el usuario envia
     @NotBlank
     private String autor;
 

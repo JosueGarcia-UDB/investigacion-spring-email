@@ -17,8 +17,8 @@ public class RecordatorioService {
     private final EmailService emailService;
 
     // Se ejecuta diario a las 9:00 AM (GMT-6)
-    @Scheduled(fixedRate = 300000) // > 300,000 ms = 5 minutos
-    @Scheduled(cron = "0 0 12 * * ?", zone = "America/El_Salvador") // 9 AM diario
+    @Scheduled(fixedRate = 120000) // > 120,000 ms = 2 minutos
+    @Scheduled(cron = "0 0 9 * * ?", zone = "America/El_Salvador") // 9 AM diario
     public void enviarRecordatoriosAutomaticos() {
         LocalDate hoy = LocalDate.now();
 

@@ -15,8 +15,8 @@ import sv.org.superate.service.PrestamoService;
 @RestController
 @RequestMapping("/api/prestamos")
 @RequiredArgsConstructor
-public class PrestamoController {
-    private final PrestamoService prestamoService;
+    public class PrestamoController {
+        private final PrestamoService prestamoService;
 
     @PostMapping
     public ResponseEntity<PrestamoResponse> crearPrestamo(
